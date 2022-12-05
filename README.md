@@ -2,11 +2,11 @@
 
 # Credit
 
-This action was taken in its entirety and changed only slightly from [last-workflow-status](https://github.com/MercymeIlya/last-workflow-status) to return the completed_at field instead of the status.
+This action was taken in its entirety and changed only slightly from [last-workflow-status](https://github.com/MercymeIlya/last-workflow-status) to return the created_at field instead of the status.
 
-# Last workflow completed_at
+# Last workflow created_at
 
-Simple GitHub action to get previous workflow completed_at. Was inspired by sending notification after build status changing in 
+Simple GitHub action to get previous workflow created_at. Was inspired by sending notification after build status changing in 
 [Travis CI](https://docs.travis-ci.com/user/notifications/#changing-notification-frequency).
 ```yaml
 notifications:
@@ -21,8 +21,8 @@ notifications:
 `default: ${{ github.token }}`
 
 ## Outputs:
-### `last_completed_at`
-* Completed_at value of last workflow.
+### `last_created_at`
+* Created_at value of last workflow.
 
-See https://docs.github.com/en/rest/checks/runs#create-a-check-run--parameters completed_at parameter.
+See https://docs.github.com/en/rest/checks/runs#create-a-check-run--parameters created_at parameter.
      
