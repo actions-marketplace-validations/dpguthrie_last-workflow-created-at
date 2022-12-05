@@ -1,5 +1,5 @@
-name: 'Get completed_at timestamp of last workflow'
-description: 'Get completed_at timestamp of last workflow run on current branch.'
+name: 'Get created_at timestamp of last workflow'
+description: 'Get created_at timestamp of last workflow run on current branch.'
 branding:
   icon: 'arrow-left'
   color: 'yellow'
@@ -9,9 +9,9 @@ inputs:
     default: ${{ github.token }}
     required: true
 outputs:
-  last_status:
-    description: "Conclusion of last workflow run on current branch"
-    value: ${{ steps.last_completed_at.outputs.last_completed_at }}
+  last_created_at:
+    description: "Last time workflow ran on current branch"
+    value: ${{ steps.last_created_at.outputs.last_created_at }}
 runs:
   using: "composite"
   steps:
@@ -38,9 +38,9 @@ runs:
       shell: bash
       id: last_completed_at
       run: |
-        last_completed_at=$(curl --silent --header 'authorization: Bearer ${{ inputs.github_token }}' \
+        last_created_at=$(curl --silent --header 'authorization: Bearer ${{ inputs.github_token }}' \
                                     --header 'content-type: application/json' \
         "${{ github.api_url }}/repos/${{ github.repository }}/actions/workflows/${{ env.WORKFLOW_ID }}/runs?per_page=1&status=completed&branch=${{ env.BRANCH_NAME }}" \
-        | jq -r .workflow_runs[0].completed_at)
-        echo "last_completed_at=$last_completed_at" >> $GITHUB_OUTPUT
-        echo "Previous build last completed at: $last_completed_at"
+        | jq -r .workflow_runs[0].created_at)
+        echo "last_created_at=$last_created_at" >> $GITHUB_OUTPUT
+        echo "Previous build created at: $last_created_at"
