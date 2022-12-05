@@ -1,5 +1,5 @@
-name: 'Get status of last workflow'
-description: 'Get conclusion of last workflow run on current branch.'
+name: 'Get completed_at timestamp of last workflow'
+description: 'Get completed_at timestamp of last workflow run on current branch.'
 branding:
   icon: 'arrow-left'
   color: 'yellow'
